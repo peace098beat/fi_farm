@@ -16,17 +16,17 @@ fi
 
 
 # UPDATE
-sudo apt-get update -y
-sudo apt-get upgrade -y
+# sudo apt-get update -y
+# sudo apt-get upgrade -y
 
-# 必要なソフトのインストール
-sudo apt-get install git -y
-sudo apt-get install postfix -y
-sudo apt-get install python2.7-dev -y
+# # 必要なソフトのインストール
+# sudo apt-get install git -y
+# sudo apt-get install postfix -y
+# sudo apt-get install python2.7-dev -y
 
-# AWS CLIのインストール
-sudo pip install awscli
-aws --version
+# # AWS CLIのインストール
+# sudo pip install awscli
+# aws --version
 
 # Source Code のダウンロード
 GIT_REPO="https://github.com/peace098beat/fi_farm.git"
