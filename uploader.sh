@@ -35,6 +35,11 @@ if [ -z "${AWS_REGION+x}" ] ; then
   exit 1
 fi
 
+aws configure set aws_access_key_id ${AWS_ACCESS_KEY}
+aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
+aws configure set region ${AWS_REGION}
+aws configure set default.region ${AWS_REGION}
+
 
 
 # Take Photo
@@ -44,7 +49,8 @@ do
   y=`echo $fname | cut -d "-" -f1`
   m=`echo $fname | cut -d "-" -f2`
   d=`echo $fname | cut -d "-" -f3`
+  echo "img is $img"
   echo "upload to s3://${S3_BUCKET}/${y}/${m}/${d}/$fname"
-  aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname &> /dev/null
-  rm -f $img &> /dev/null
+  aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname 
+  rm -f $img 
 done

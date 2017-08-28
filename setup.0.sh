@@ -16,16 +16,16 @@ fi
 
 
 # UPDATE
-sudo apt-get update -y
-sudo apt-get upgrade -y
+#sudo apt-get update -y
+#sudo apt-get upgrade -y
 
 # 必要なソフトのインストール
-sudo apt-get install git -y
-sudo apt-get install postfix -y
-sudo apt-get install python2.7-dev python-pip -y
+#sudo apt-get install git -y
+#sudo apt-get install postfix -y
+#sudo apt-get install python2.7-dev python-pip -y
 
 # AWS CLIのインストール
-sudo pip install awscli
+#sudo pip install awscli
 aws --version
 
 # Source Code のダウンロード
@@ -44,11 +44,16 @@ sudo chmod -R 777 ${data_dir}
 # Cronの開始
 sudo chmod 600 ${base_dir}/crontab*
 
-crontab ${base_dir}/crontab
+crontab ${base_dir}/crontab.test
 sudo /etc/init.d/cron restart
-crontab -l
+sudo crontab -l
 
 # 変数展開
 PRIVATE_KEY="${base_dir}/privatekey"
 sudo cp ${PRIVATE_KEY}.org ${PRIVATE_KEY}
+
+# AWS
+sudo cp -rf ${base_dir}/aws/ /home/pi/.aws/
+
+
 
