@@ -1,8 +1,8 @@
 # collect metrics
-# */5 * * * * cd /opt/pi_farm/current && bash metrics_collector.sh &> /dev/null
+# */1 * * * * /bin/echo [$(date +"%Y-%m-%d-%H%M%S")] Cron Alive >> /home/pi/cron.log
 
 # take picture
-8 3-21 * * * cd /opt/pi_farm/current && bash take_picture.sh &> /dev/null
+*/10 * * * * cd /opt/fi_farm && bash take_picture.sh >> /home/pi/cron.log
 
 # upload datas
-2,22,42 * * * * cd /opt/pi_farm/current && bash uploader.sh &> /dev/null
+*/10 * * * * cd /opt/fi_farm && bash uploader.sh>> /home/pi/cron.log

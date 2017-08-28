@@ -6,9 +6,6 @@ data_dir="${base_dir}/data"
 photo_dir="${data_dir}/photos/"
 
 
-
-
-
 # check environment variables
 if [ ! -e ${base_dir} ]; then
   echo "no env file"
