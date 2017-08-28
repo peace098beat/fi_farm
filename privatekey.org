@@ -1,5 +1,5 @@
-AWS_ACCESS_KEY=sfadsdf
-AWS_SECRET_KEY=sadfsfad
+AWS_ACCESS_KEY=AKIAJPKJLGXDMFW3K4R
+AWS_SECRET_KEY=nHmfHAf47t0CIToNs2VVV9g9JsQF6+ayT0q6CiV
 AWS_REGION=up-west-2
 GIT_REPO=https://github.com/peace098beat/fi_farm.git
 S3_BUCKET=fi.farm
