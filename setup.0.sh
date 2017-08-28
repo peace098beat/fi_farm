@@ -52,8 +52,3 @@ crontab -l
 PRIVATE_KEY="${base_dir}/privatekey"
 sudo cp ${PRIVATE_KEY}.org ${PRIVATE_KEY}
 
-# AWS
-sudo cp -rf ${base_dir}/aws/ /home/pi/.aws/
-
-
-

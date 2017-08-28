@@ -12,7 +12,7 @@ if [ ! -e ${base_dir} ]; then
   exit 1
 else
   echo "exist ${base_dir}"
-if
+fi
 
 
 # check environment variables
