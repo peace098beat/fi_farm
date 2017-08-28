@@ -8,7 +8,7 @@ photo_dir="${data_dir}/photos/"
 
 # check environment variables
 if [ ! -e ${base_dir} ]; then
-  echo "no env file"
+  echo "no  ${base_dir}"
   exit 1
 else
   echo "yes env"
@@ -17,7 +17,7 @@ fi
 
 # check environment variables
 if [ ! -e ${base_dir}/privatekey ]; then
-  echo "no env file"
+  echo "no ${base_dir}/privatekey"
   exit 1
 fi
 source ${base_dir}/privatekey
