@@ -22,7 +22,7 @@ fi
 # # 必要なソフトのインストール
 # sudo apt-get install git -y
 # sudo apt-get install postfix -y
-# sudo apt-get install python2.7-dev -y
+# sudo apt-get install python2.7-dev python-pip -y
 
 # # AWS CLIのインストール
 # sudo pip install awscli
@@ -35,12 +35,12 @@ sudo git clone ${GIT_REPO} ${base_dir}
 # mkdir
 sudo mkdir -p ${photo_dir}
 
-# chmod
-sudo chmod -R 777 ${data_dir}
+
 # chmod
 sudo chmod -R 755 ${base_dir}
 sudo chmod -R 755 ${base_dir}/*
-
+# chmod
+sudo chmod -R 777 ${data_dir}
 # Cronの開始
 sudo chmod 600 ${base_dir}/crontab*
 
