@@ -38,6 +38,7 @@ sudo mkdir -p ${photo_dir}
 # Cronの開始
 crontab ${base_dir}/crontab
 sudo /etc/init.d/cron restart
+crontab -l
 
 # 変数展開
 PRIVATE_KEY="${base_dir}/privatekey"
