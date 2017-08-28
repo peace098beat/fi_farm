@@ -35,7 +35,12 @@ sudo git clone ${GIT_REPO} ${base_dir}
 # mkdir
 sudo mkdir -p ${photo_dir}
 
+# chmod
+sudo chmod -R 700 ${base_dir}
+
 # Cronの開始
+sudo chmod 600 ${base_dir}/crontab*
+
 crontab ${base_dir}/crontab
 sudo /etc/init.d/cron restart
 crontab -l
