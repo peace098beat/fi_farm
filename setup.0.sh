@@ -22,7 +22,7 @@ sudo apt-get upgrade -y
 # 必要なソフトのインストール
 sudo apt-get install git -y
 sudo apt-get install postfix -y
-sudo apt-get install python2.7-dev -y
+sudo apt-get install python2.7-dev python-pip -y
 
 # AWS CLIのインストール
 sudo pip install awscli
