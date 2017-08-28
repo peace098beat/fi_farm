@@ -1,0 +1,5 @@
+AWS_ACCESS_KEY=<>
+AWS_SECRET_KEY=<>
+AWS_REGION=up-west-2
+GIT_REPO=https://github.com/peace098beat/fi_farm.git
+S3_BUCKET=fi.farm
