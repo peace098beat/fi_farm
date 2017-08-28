@@ -1,3 +1,6 @@
+SHELL=/bin/bash
+PATH=/usr/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 # collect metrics
 # */1 * * * * /bin/echo [$(date +"%Y-%m-%d-%H%M%S")] Cron Alive >> /home/pi/cron.log
 
