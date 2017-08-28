@@ -8,11 +8,11 @@ photo_dir="${data_dir}/photos/"
 
 # check environment variables
 if [ ! -e ${base_dir} ]; then
-  echo "no  ${base_dir}"
+  echo "nothing  ${base_dir}. exit.."
   exit 1
 else
-  echo "yes env"
-fi
+  echo "exist ${base_dir}"
+if
 
 
 # check environment variables
@@ -40,7 +40,8 @@ aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
 aws configure set region ${AWS_REGION}
 aws configure set default.region ${AWS_REGION}
 
-
+echo "who am i ? :"
+whoami
 
 # Take Photo
 for img in `find $photo_dir -type f -name "*.jpg"`

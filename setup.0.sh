@@ -46,7 +46,7 @@ sudo chmod 600 ${base_dir}/crontab*
 
 crontab ${base_dir}/crontab.test
 sudo /etc/init.d/cron restart
-sudo crontab -l
+crontab -l
 
 # 変数展開
 PRIVATE_KEY="${base_dir}/privatekey"
