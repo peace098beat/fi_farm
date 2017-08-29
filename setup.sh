@@ -46,35 +46,56 @@ sudo apt-get install python2.7-dev python-pip -y
 # AWS CLIのインストール
 sudo pip install awscli
 
+# ====================================================================
+# AWS CLIのインストール
+# ====================================================================
 if [ type aws > /dev/null 2>&1 ];then
   echo "[ OK ]Exists aws command."
   echo "[ OK ]$(aws --version)"
 else
   echo "[ NG ]Fail! Uninstall aws command."
+  exit 1
 fi
 
-
+# ====================================================================
 # Source Code のダウンロード
-GIT_REPO="https://github.com/peace098beat/fi_farm.git"
-git clone ${GIT_REPO} ${base_dir}
+# ====================================================================
+if [ ! -e ${base_dir} ];then
+  GIT_REPO="https://github.com/peace098beat/fi_farm.git"
+  git clone ${GIT_REPO} ${base_dir}
+  echo "[ OK ]Download Source Code from ${GIT_REPO} to ${base_dir}"
+fi
 
 # mkdir
 mkdir -p ${photo_dir}
 
+# ====================================================================
 # chmod
+# ====================================================================
 chmod -R 700 ${base_dir}
 chmod -R 700 ${base_dir}/*
-# chmod
 chmod -R 700 ${data_dir}
-# Cronの開始
 chmod 700 ${base_dir}/crontab*
 
+# ====================================================================
 # setup cron
+# ====================================================================
 crontab ${base_dir}/crontab
 sudo /etc/init.d/cron restart
 
-# 変数展開
+# ====================================================================
+# Private key
+# ====================================================================
 PRIVATE_KEY="${base_dir}/privatekey"
 cp -n ${PRIVATE_KEY}.org ${PRIVATE_KEY}
 
+
+# ====================================================================
+
+
 echo "[ OK ]Setup Finish!!"
+
+
+
+
+
