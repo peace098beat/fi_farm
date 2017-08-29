@@ -49,7 +49,7 @@ sudo pip install awscli
 # ====================================================================
 # AWS CLIのインストール
 # ====================================================================
-if [ type aws > /dev/null 2>&1 ];then
+if type aws > /dev/null 2>&1;then
   echo "[ OK ]Exists aws command."
   echo "[ OK ]$(aws --version)"
 else
