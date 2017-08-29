@@ -13,3 +13,6 @@ certs/
 
 *.csv
 environment_variables
+privatekey
+*.jpg
+*.png

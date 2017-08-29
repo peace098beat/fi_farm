@@ -1,21 +1,29 @@
 #!/bin/bash
-# install.sh
+set -Ceu
 
-base_dir="/opt/fi_farm"
+# ====================================================================
+# Check Bash
+# ====================================================================
+if [ $SHELL == "/bin/bash" ];then
+  echo "[ OK ]Im : bash"
+else
+  echo "[ NG ]Im ${SHELL} . Not /bin/bash"
+  echo "[Warning] Need Bash.  Exit.."
+  exit 1
+fi
+
+# ====================================================================
+# Check User
+# ====================================================================
+
+
+base_dir="/home/pi/fi_farm"
 data_dir="${base_dir}/data"
 photo_dir="${data_dir}/photos/"
 
 
-# ルートディレクトリの削除
-if [ ! -e ${base_dir} ]; then
-  echo "no ${base_dir}"
-else
-  echo "exists ${base_dir}"
-  sudo rm -rf ${base_dir}
-fi
 
-
-# UPDATE
+# 必要なソフトのインストール
 #sudo apt-get update -y
 #sudo apt-get upgrade -y
 
@@ -29,26 +37,27 @@ fi
 aws --version
 
 # Source Code のダウンロード
-GIT_REPO="https://github.com/peace098beat/fi_farm.git"
-sudo git clone ${GIT_REPO} ${base_dir}
+# GIT_REPO="https://github.com/peace098beat/fi_farm.git"
+# git clone ${GIT_REPO} ${base_dir}
 
 # mkdir
-sudo mkdir -p ${photo_dir}
+mkdir -p ${photo_dir}
 
 
 # chmod
-sudo chmod -R 755 ${base_dir}
-sudo chmod -R 755 ${base_dir}/*
+chmod -R 700 ${base_dir}
+chmod -R 700 ${base_dir}/*
 # chmod
-sudo chmod -R 777 ${data_dir}
+chmod -R 700 ${data_dir}
 # Cronの開始
-sudo chmod 600 ${base_dir}/crontab*
+chmod 700 ${base_dir}/crontab*
 
-crontab ${base_dir}/crontab.test
+crontab ${base_dir}/crontab
 sudo /etc/init.d/cron restart
 crontab -l
 
 # 変数展開
 PRIVATE_KEY="${base_dir}/privatekey"
-sudo cp ${PRIVATE_KEY}.org ${PRIVATE_KEY}
+cp -n ${PRIVATE_KEY}.org ${PRIVATE_KEY}
 
+echo "Setup Finish!!"

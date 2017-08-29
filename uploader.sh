@@ -1,9 +1,13 @@
 #!/bin/bash
-# upload metrics and photos.
-# this script check updates by AWS IoT shadow and replace source if the new source version is arrived
-base_dir="/opt/fi_farm"
+set -Ce
+
+base_dir="/home/pi/fi_farm"
 data_dir="${base_dir}/data"
 photo_dir="${data_dir}/photos/"
+
+echo "[$(whoami)][${SHELL}]"
+
+
 
 
 # check environment variables
@@ -35,13 +39,13 @@ if [ -z "${AWS_REGION+x}" ] ; then
   exit 1
 fi
 
-aws configure set aws_access_key_id ${AWS_ACCESS_KEY}
-aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
-aws configure set region ${AWS_REGION}
-aws configure set default.region ${AWS_REGION}
+#aws configure set aws_access_key_id ${AWS_ACCESS_KEY}
+#aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
+#aws configure set region ${AWS_REGION}
+#aws configure set default.region ${AWS_REGION}
 
-echo "who am i ? :"
-whoami
+#echo "who am i ? :"
+#whoami
 
 # Take Photo
 for img in `find $photo_dir -type f -name "*.jpg"`

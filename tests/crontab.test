@@ -1,0 +1,11 @@
+SHELL=/bin/bash
+PATH=/usr/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+wdir=/home/pi/fi_farm/tests
+
+
+# * * * * * /bin/bash ${wdir}/test_alive.sh 2>&1 >> ${wdir}/cron.log
+
+# * * * * * /bin/bash ${wdir}/test_camera.sh 2>&1 >> ${wdir}/cron.log
+
+* * * * * /bin/bash ${wdir}/test_upload.sh 2>&1 >> ${wdir}/cron.log
+
