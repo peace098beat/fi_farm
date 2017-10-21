@@ -19,3 +19,10 @@ bash setup.sh
 
 # ログの確認
 ログは``~/cron.log``に格納されている.
+
+# git
+```
+git pull origin master
+
+git push -u origin master
+```
