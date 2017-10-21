@@ -65,7 +65,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 sudo apt-get install git -y
-#sudo apt-get install postfix -y
+sudo apt-get install postfix -y
 sudo apt-get install python2.7-dev python-pip -y
 
 # AWS CLI

@@ -1,12 +1,12 @@
 SHELL=/bin/bash
 PATH=/usr/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-BASE_DIR=${HOME}/fi_farm
 
 # keep alive
-* * * * *    fi date > ${HOME}/fi_farm/logs/keep-alive0.log
+* * * * *    fi date > ${HOME}/fi_farm/logs/keep-alive.log
+* * * * *    fi env > ${HOME}/fi_farm/logs/env.log
 
 # take picture
-*/20 * * * *    fi /bin/bash ${BASE_DIR}/scripts/take_picture.sh 2>&1 >> ${BASE_DIR}/logs/take_picture.log
+*/5 * * * *    fi /bin/bash ${HOME}/fi_farm/scripts/take_picture.sh 2>&1 > ${HOME}/fi_farm/logs/take_picture.log
 
 # upload datas
-2    * * * *    fi /bin/bash ${BASE_DIR}/scripts/uploader.sh 2>&1 >> ${BASE_DIR}/logs/uploader.log
+*/10    * * * *    fi /bin/bash ${HOME}/fi_farm/scripts/uploader.sh 2>&1 > ${HOME}/fi_farm/logs/uploader.log
