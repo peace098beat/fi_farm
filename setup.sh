@@ -1,6 +1,24 @@
 #!/bin/bash
 set -Ceu
 
+# ====================================================================
+# Check Option 
+# ====================================================================
+CMDNAME="basename $0"
+FLG_TEST="FALSE"
+while getopts t OPT
+do
+  case $OPT in
+	"t" ) FLG_TEST="TRUE" ;;
+	 *  ) echo "Usage ${CMDNAME} [-t]" 1>&2
+		exit 1 ;;
+  esac
+done
+
+if [ "$FLG_TEST" = "TRUE" ]; then
+  echo "[ INFO ] TEST MODE"
+fi
+
 
 # ====================================================================
 # Check Bash
@@ -40,15 +58,20 @@ echo "[ INFO ] BASE_DIR ${BASE_DIR}"
 # ====================================================================
 # Install Sub Package
 # ====================================================================
-#sudo apt-get update -y
-#sudo apt-get upgrade -y
+if [ "$FLG_TEST" = "FALSE" ]; then
 
-#sudo apt-get install git -y
+sudo apt-get update -y
+
+sudo apt-get upgrade -y
+
+sudo apt-get install git -y
 #sudo apt-get install postfix -y
-#sudo apt-get install python2.7-dev python-pip -y
+sudo apt-get install python2.7-dev python-pip -y
 
 # AWS CLI
-#sudo pip install awscli
+sudo pip install awscli
+
+fi
 
 # ====================================================================
 # AWS CLI
@@ -67,11 +90,15 @@ fi
 PRIVATE_KEY="${BASE_DIR}/privatekey"
 . ${PRIVATE_KEY}
 
+if [ "$FLG_TEST" = "FALSE" ]; then
+
 aws configure set aws_access_key_id ${AWS_ACCESS_KEY}
 aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
 aws configure set region ${AWS_REGION}
 aws configure set default.region ${AWS_REGION}
 echo "[ INFO ] configure aws" 
+
+fi
 
 # ====================================================================
 # Source Code のダウンロード
@@ -85,6 +112,7 @@ fi
 # mkdir
 # ====================================================================
 mkdir -p ${PHOTOS_DIR}
+mkdir -p ${BASE_DIR}/logs
 
 # ====================================================================
 # chmod
@@ -96,7 +124,7 @@ chmod -R 700 ${DATA_DIR}
 # ====================================================================
 # setup cron
 # ====================================================================
-sudo cp ${BASE_DIR}/setup/fifarm-cron /etc/cron.d/
+sudo cp ${BASE_DIR}/etc/fifarm-cron /etc/cron.d/
 sudo chmod 644 /etc/cron.d/fifarm-cron
 sudo /etc/init.d/cron restart
 
