@@ -1,9 +1,0 @@
-SHELL=/bin/bash
-PATH=/usr/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-
-# take picture
-* * * * * /bin/bash /home/pi/fi_farm/take_picture.sh 2>&1 >> /home/pi/cron.log
-
-# upload datas
-* * * * * /bin/bash /home/pi/fi_farm/uploader.sh 2>&1 >> /home/pi/cron.log

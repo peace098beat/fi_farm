@@ -1,6 +1,7 @@
 #!/bin/bash
 set -Ceu
 
+
 # ====================================================================
 # Check Bash
 # ====================================================================
@@ -27,27 +28,30 @@ fi
 # ====================================================================
 # Workspace
 # ====================================================================
-# base_dir="/home/pi/fi_farm"
-# data_dir="${base_dir}/data"
-# photo_dir="${data_dir}/photos/"
+SCRIPT_DIR=$(cd $(dirname $0);pwd)
+echo "[ INFO ] SCRIPT_DIR ${SCRIPT_DIR}"
+
+BASE_DIR=${HOME}/fi_farm
+DATA_DIR=${BASE_DIR}/data
+PHOTOS_DIR=${DATA_DIR}/photos
+echo "[ INFO ] BASE_DIR ${BASE_DIR}"
+
 
 # ====================================================================
 # Install Sub Package
 # ====================================================================
-# 必要なソフトのインストール
-# sudo apt-get update -y
-# sudo apt-get upgrade -y
+#sudo apt-get update -y
+#sudo apt-get upgrade -y
 
-# 必要なソフトのインストール
-sudo apt-get install git -y
-# sudo apt-get install postfix -y
-sudo apt-get install python2.7-dev python-pip -y
+#sudo apt-get install git -y
+#sudo apt-get install postfix -y
+#sudo apt-get install python2.7-dev python-pip -y
 
-# AWS CLIのインストール
-sudo pip install awscli
+# AWS CLI
+#sudo pip install awscli
 
 # ====================================================================
-# AWS CLIのインストール
+# AWS CLI
 # ====================================================================
 if type aws > /dev/null 2>&1;then
   echo "[ OK ]Exists aws command."
@@ -58,46 +62,48 @@ else
 fi
 
 # ====================================================================
+# Private key
+# ====================================================================
+PRIVATE_KEY="${BASE_DIR}/privatekey"
+. ${PRIVATE_KEY}
+
+aws configure set aws_access_key_id ${AWS_ACCESS_KEY}
+aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
+aws configure set region ${AWS_REGION}
+aws configure set default.region ${AWS_REGION}
+echo "[ INFO ] configure aws" 
+
+# ====================================================================
 # Source Code のダウンロード
 # ====================================================================
-if [ ! -e ${base_dir} ];then
-  # GIT_REPO="https://github.com/peace098beat/fi_farm.git"
-  git clone ${GIT_REPO} ${base_dir}
-  echo "[ OK ]Download Source Code from ${GIT_REPO} to ${base_dir}"
+if [ ! -e ${BASE_DIR} ];then
+  git clone ${GIT_REPO} ${BASE_DIR}
+  echo "[ OK ]Download Source Code from ${GIT_REPO} to ${BASE_DIR}"
 fi
 
+# ====================================================================
 # mkdir
-mkdir -p ${photo_dir}
+# ====================================================================
+mkdir -p ${PHOTOS_DIR}
 
 # ====================================================================
 # chmod
 # ====================================================================
-chmod -R 700 ${base_dir}
-chmod -R 700 ${base_dir}/*
-chmod -R 700 ${data_dir}
-# chmod 700 ${base_dir}/crontab*
+chmod -R 700 ${BASE_DIR}
+chmod -R 700 ${BASE_DIR}/*
+chmod -R 700 ${DATA_DIR}
 
 # ====================================================================
 # setup cron
 # ====================================================================
-# crontab ${base_dir}/crontab
-# sudo /etc/init.d/cron restart
-sudo cp crontab crontab.org
-sudo cp crontab /etc/cron.d/
+sudo cp ${BASE_DIR}/setup/fifarm-cron /etc/cron.d/
+sudo chmod 644 /etc/cron.d/fifarm-cron
 sudo /etc/init.d/cron restart
 
-# ====================================================================
-# Private key
-# ====================================================================
-PRIVATE_KEY="${base_dir}/privatekey"
-cp -n ${PRIVATE_KEY}.org ${PRIVATE_KEY}
-
 
 # ====================================================================
 
-
-echo "[ OK ]Setup Finish!!"
-
+echo "[ OK ] Finish! Setup!"
 
 
 

@@ -1,13 +1,11 @@
 #!/bin/bash
 set -Ce
 
-base_dir="/home/pi/fi_farm"
+base_dir="${HOME}/fi_farm"
 data_dir="${base_dir}/data"
 photo_dir="${data_dir}/photos/"
 
 echo "[$(whoami)][${SHELL}]"
-
-
 
 
 # check environment variables
@@ -25,6 +23,7 @@ if [ ! -e ${base_dir}/privatekey ]; then
   exit 1
 fi
 
+
 # source
 . ${base_dir}/privatekey
 
@@ -39,13 +38,6 @@ if [ -z "${AWS_REGION+x}" ] ; then
   exit 1
 fi
 
-#aws configure set aws_access_key_id ${AWS_ACCESS_KEY}
-#aws configure set aws_secret_access_key ${AWS_SECRET_KEY}
-#aws configure set region ${AWS_REGION}
-#aws configure set default.region ${AWS_REGION}
-
-#echo "who am i ? :"
-#whoami
 
 # Take Photo
 for img in `find $photo_dir -type f -name "*.jpg"`
@@ -59,3 +51,8 @@ do
   aws s3 cp $img s3://${S3_BUCKET}/${y}/${m}/${d}/$fname 
   rm -f $img 
 done
+
+
+
+
+

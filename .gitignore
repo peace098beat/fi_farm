@@ -16,3 +16,4 @@ environment_variables
 privatekey
 *.jpg
 *.png
+data/

@@ -2,9 +2,7 @@
 set -Ce
 
 
-
-
-photo_dir="/home/pi/fi_farm/data/photos"
+photo_dir="${HOME}/fi_farm/data/photos"
 
 file_name=$(date +"%Y-%m-%d-%H%M%S").jpg
 
