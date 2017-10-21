@@ -27,20 +27,20 @@ fi
 # ====================================================================
 # Workspace
 # ====================================================================
-base_dir="/home/pi/fi_farm"
-data_dir="${base_dir}/data"
-photo_dir="${data_dir}/photos/"
+# base_dir="/home/pi/fi_farm"
+# data_dir="${base_dir}/data"
+# photo_dir="${data_dir}/photos/"
 
 # ====================================================================
 # Install Sub Package
 # ====================================================================
 # 必要なソフトのインストール
-sudo apt-get update -y
-sudo apt-get upgrade -y
+# sudo apt-get update -y
+# sudo apt-get upgrade -y
 
 # 必要なソフトのインストール
 sudo apt-get install git -y
-sudo apt-get install postfix -y
+# sudo apt-get install postfix -y
 sudo apt-get install python2.7-dev python-pip -y
 
 # AWS CLIのインストール
@@ -61,7 +61,7 @@ fi
 # Source Code のダウンロード
 # ====================================================================
 if [ ! -e ${base_dir} ];then
-  GIT_REPO="https://github.com/peace098beat/fi_farm.git"
+  # GIT_REPO="https://github.com/peace098beat/fi_farm.git"
   git clone ${GIT_REPO} ${base_dir}
   echo "[ OK ]Download Source Code from ${GIT_REPO} to ${base_dir}"
 fi
@@ -75,12 +75,15 @@ mkdir -p ${photo_dir}
 chmod -R 700 ${base_dir}
 chmod -R 700 ${base_dir}/*
 chmod -R 700 ${data_dir}
-chmod 700 ${base_dir}/crontab*
+# chmod 700 ${base_dir}/crontab*
 
 # ====================================================================
 # setup cron
 # ====================================================================
-crontab ${base_dir}/crontab
+# crontab ${base_dir}/crontab
+# sudo /etc/init.d/cron restart
+sudo cp crontab crontab.org
+sudo cp crontab /etc/cron.d/
 sudo /etc/init.d/cron restart
 
 # ====================================================================
