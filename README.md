@@ -2,8 +2,11 @@
 
 ラズベリーパイで畑を観察する.
 
+## 事前条件
 
-# 使い方
+ - カメラを有効化しておく
+
+## 使い方
 
 githubからfi_farmリポジトリをダウンロードし、setupスクリプトを　実行する.
 
@@ -30,9 +33,7 @@ ${HOME}/fi_farm/scripts
 ${HOME}/fi_farm/logs
 ```
 
-
-
-# git
+## git
 ```
 git pull origin master
 
