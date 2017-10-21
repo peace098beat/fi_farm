@@ -10,15 +10,27 @@ githubからfi_farmリポジトリをダウンロードし、setupスクリプ�
 ```
 git clone https://github.com/peace098beat/fi_farm.git ~/fi_farm
 cd ~/fi_farm
+
+cp private.org private
+
+# privateを編集する
+
 bash setup.sh
 ```
 
-そのご``~/fi_farm/private``がでてきているので、awsのIAMのIDとパスワードを変更する。
-
 以上.
 
-# ログの確認
-ログは``~/cron.log``に格納されている.
+
+## 仕様
+
+作業ディレクトリ
+```
+${HOME}/fi_farm
+${HOME}/fi_farm/scripts
+${HOME}/fi_farm/logs
+```
+
+
 
 # git
 ```
