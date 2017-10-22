@@ -6,7 +6,7 @@ PATH=/usr/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 * * * * *    fi env > ${HOME}/fi_farm/logs/env.log
 
 # take picture
-*/5 * * * *    fi /bin/bash ${HOME}/fi_farm/scripts/take_picture.sh 2>&1 > ${HOME}/fi_farm/logs/take_picture.log
+1,21,41 5-21 * * *    fi /bin/bash ${HOME}/fi_farm/scripts/take_picture.sh 2>&1 > ${HOME}/fi_farm/logs/take_picture.log
 
 # upload datas
-*/10    * * * *    fi /bin/bash ${HOME}/fi_farm/scripts/uploader.sh 2>&1 > ${HOME}/fi_farm/logs/uploader.log
+3,23,43 5-21 * * *       fi /bin/bash ${HOME}/fi_farm/scripts/uploader.sh 2>&1 > ${HOME}/fi_farm/logs/uploader.log
